@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+<defs>
+ <filter id="surface" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="23"/></filter>
+ <filter id="pink-surface" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+ <filter id="depth" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="49"/></filter>
+ <filter id="air" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="95"/></filter>
+ <linearGradient id="pink-paper" x1="0" y1="0" x2=".25" y2="1"><stop stop-color="#f9d7de" stop-opacity=".3"/><stop offset=".48" stop-color="#f7cbd0" stop-opacity=".34"/><stop offset="1" stop-color="#f9ded8" stop-opacity=".25"/></linearGradient>
+</defs>
+<!-- Broad ambient spill remains separate from the softly legible discs. -->
+<g filter="url(#air)">
+ <ellipse cx="190" cy="55" rx="610" ry="280" fill="#c9deef" opacity=".16"/>
+ <ellipse cx="1110" cy="170" rx="525" ry="415" fill="#b8d2f1" opacity=".17"/>
+ <ellipse cx="670" cy="455" rx="510" ry="310" fill="#d0e4da" opacity=".09"/>
+ <ellipse cx="1040" cy="695" rx="445" ry="330" fill="#c4e0d2" opacity=".16"/>
+ <ellipse cx="1515" cy="215" rx="520" ry="485" fill="#f7d3d9" opacity=".19"/>
+ <ellipse cx="1300" cy="655" rx="405" ry="315" fill="#f6dcd4" opacity=".12"/>
+ <ellipse cx="350" cy="390" rx="340" ry="260" fill="#fff6e9" opacity=".13"/>
+</g>
+<!-- Blue: a broad translucent surface, with offset powder-blue depth. -->
+<ellipse cx="1085" cy="135" rx="345" ry="420" transform="rotate(29 1085 135)" fill="#c9dcf5" opacity=".15" filter="url(#surface)"/>
+<ellipse cx="1080" cy="280" rx="186" ry="207" transform="rotate(35 1080 280)" fill="#92bceb" opacity=".39" filter="url(#depth)"/>
+<ellipse cx="1165" cy="110" rx="218" ry="140" transform="rotate(24 1165 110)" fill="#aec7ef" opacity=".16" filter="url(#depth)"/>
+<!-- Green: a larger mint surface extending well beyond the inner seafoam. -->
+<ellipse cx="1025" cy="715" rx="290" ry="280" transform="rotate(-29 1025 715)" fill="#c8e2d5" opacity=".2" filter="url(#surface)"/>
+<ellipse cx="1020" cy="680" rx="163" ry="170" transform="rotate(-29 1020 680)" fill="#87c8b9" opacity=".38" filter="url(#depth)"/>
+<ellipse cx="982" cy="490" rx="216" ry="137" fill="#bcdedb" opacity=".17" filter="url(#air)"/>
+<!-- Pink: a near-circular coloured sheet, not a centre-to-transparent spotlight. -->
+<circle cx="1370" cy="465" r="285" fill="url(#pink-paper)" filter="url(#pink-surface)"/>
+<ellipse cx="1375" cy="490" rx="213" ry="216" fill="#f5b5bc" opacity=".23" filter="url(#depth)"/>
+<ellipse cx="1290" cy="575" rx="180" ry="155" fill="#f4c0b3" opacity=".15" filter="url(#depth)"/>
+<!-- A warm paper pocket keeps the type quiet without cutting off the ambient spill. -->
+<ellipse cx="445" cy="400" rx="335" ry="240" fill="#f8f7f4" opacity=".48" filter="url(#air)"/>
+<ellipse cx="805" cy="-35" rx="295" ry="145" fill="#f8f7f4" opacity=".38" filter="url(#air)"/>
+</svg>
