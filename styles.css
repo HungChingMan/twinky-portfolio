@@ -100,3 +100,21 @@ html{scroll-padding-top:72px}
 @media(max-width:800px){.about .venn{--venn-diameter:255px;--venn-drop:159.5px}}
 @media(max-width:600px){.about .venn{--venn-diameter:190px;--venn-drop:121px}}
 @media(max-width:360px){.about .venn{--venn-diameter:170px;--venn-drop:110px}}
+
+/* About typography brought into the approved Hero system. */
+.about-copy .section-label{font-weight:400;letter-spacing:.24em;color:#657087}
+.about-copy h2{font-family:Didot,'Bodoni MT','Times New Roman',serif;letter-spacing:-.03em;line-height:1.15}
+.about-copy>p:last-child{font-weight:300;font-size:17px;line-height:1.75;color:#5a6475}
+
+/* Circle typography reimagined as an editorial continuation of the Hero. */
+.discipline-title{font-family:Didot,'Bodoni MT','Times New Roman',serif;font-size:21px;font-weight:400;letter-spacing:0;line-height:1.2;margin-bottom:10px;color:var(--ink);text-align:center}
+.discipline .default{font-family:var(--sans);font-weight:300;font-size:14px;line-height:1.6;color:#7a8296;text-align:center}
+@media(max-width:1100px){.discipline-title{font-size:19px;margin-bottom:9px}.discipline .default{font-size:13px}}
+@media(max-width:600px){.discipline-title{font-size:17px;margin-bottom:7px}.discipline .default{font-size:12px;line-height:1.55}}
+@media(max-width:360px){.discipline-title{font-size:15px}.discipline .default{font-size:11px}}
+
+/* Neutralise the legacy off-centre padding so the text sits truly centred in each circle. */
+.product{padding-bottom:30px}
+.data{padding-right:30px}
+.technology{padding-left:30px}
+@media(max-width:600px){.product{padding-bottom:20px}.data{padding-right:20px}.technology{padding-left:20px}}
