@@ -118,3 +118,24 @@ html{scroll-padding-top:72px}
 .data{padding-right:30px}
 .technology{padding-left:30px}
 @media(max-width:600px){.product{padding-bottom:20px}.data{padding-right:20px}.technology{padding-left:20px}}
+
+/* Hover: a soft thought gradually coming into focus, then settling back. */
+.discipline{transition:transform .48s cubic-bezier(.22,1,.36,1),opacity .48s cubic-bezier(.22,1,.36,1)}
+.discipline:is(:hover,:focus-visible,[aria-pressed=true]){transform:scale(1.04)}
+.about .discipline::before{transition:filter .48s cubic-bezier(.22,1,.36,1)}
+.about .discipline:is(:hover,:focus-visible,[aria-pressed=true])::before{filter:blur(1.4px) saturate(1.12)}
+.venn:has(.discipline:is(:hover,:focus-visible,[aria-pressed=true])) .discipline:not(:is(:hover,:focus-visible,[aria-pressed=true])){opacity:.93}
+.discipline-title{transition:color .48s cubic-bezier(.22,1,.36,1)}
+.discipline:is(:hover,:focus-visible,[aria-pressed=true]) .discipline-title{color:#141b30}
+.capabilities{display:block}
+.discipline:is(:hover,:focus-visible,[aria-pressed=true]) .default{display:block}
+.copy-stack{position:relative;display:block;width:170px}
+.copy-stack .default,.copy-stack .capabilities{transition:opacity .4s cubic-bezier(.22,1,.36,1),transform .4s cubic-bezier(.22,1,.36,1)}
+.copy-stack .default{position:relative;opacity:1;transform:translateY(0)}
+.copy-stack .capabilities{position:absolute;inset:0;opacity:0;transform:translateY(5px);text-align:center;font-family:var(--sans);font-weight:300;font-size:14px;line-height:1.6;color:#7a8296;pointer-events:none}
+.discipline:is(:hover,:focus-visible,[aria-pressed=true]) .copy-stack .default{opacity:0;transform:translateY(-5px)}
+.discipline:is(:hover,:focus-visible,[aria-pressed=true]) .copy-stack .capabilities{opacity:1;transform:translateY(0)}
+@media(max-width:1100px){.copy-stack{width:150px}.copy-stack .capabilities{font-size:13px}}
+@media(max-width:600px){.copy-stack{width:130px}.copy-stack .capabilities{font-size:12px}}
+@media(max-width:360px){.copy-stack{width:110px}.copy-stack .capabilities{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.discipline,.about .discipline::before,.discipline-title,.copy-stack .default,.copy-stack .capabilities{transition:none}}
