@@ -81,3 +81,22 @@ html{scroll-padding-top:72px}
 @media(min-width:1500px){.hero-content{padding-top:130px}}
 @media(max-width:800px){.hero-content{width:calc(100% - 64px);padding-top:90px}.hero .eyebrow{margin-bottom:20px}.hero h1{font-size:56px}.hero-positioning{font-size:28px}.hero-intro{font-size:17px;max-width:400px}}
 @media(max-width:600px){.hero-content{width:calc(100% - 40px);padding-top:80px;padding-bottom:65px}.hero .eyebrow{margin-bottom:18px}.hero h1{font-size:clamp(34px,9vw,54px);line-height:1.08;margin-bottom:12px}.hero-positioning{font-size:clamp(20px,4.9vw,26px);line-height:1.25;margin-bottom:14px}.hero-intro{font-size:15px;line-height:1.65;max-width:315px}}
+
+/* About colour artwork stays behind the crisp, unchanged diagram labels. */
+.about .venn{isolation:isolate}
+.about .discipline{background:transparent;border-color:transparent}
+.about .discipline::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;filter:blur(2px);background:radial-gradient(circle closest-side at 50% 50%,rgb(var(--circle-pigment) / .8) 0%,rgb(var(--circle-pigment) / .68) 48%,rgb(var(--circle-pigment) / .56) 75%,rgb(var(--circle-pigment) / .45) 90%,rgb(var(--circle-pigment) / .3) 96%,rgb(var(--circle-pigment) / 0) 100%)}
+.about .product{--circle-pigment:240 200 203}
+.about .data{--circle-pigment:194 214 242}
+.about .technology{--circle-pigment:197 225 211}
+
+/* Equal centre distances give all three pairs the same overlap area. */
+.about .venn{--venn-diameter:270px;--venn-drop:176px;--venn-inset:calc(50% - var(--venn-diameter) / 2 - var(--venn-drop) * .577350269)}
+.about .product{left:calc(50% - var(--venn-diameter) / 2)}
+.about .data{left:var(--venn-inset)}
+.about .technology{right:var(--venn-inset)}
+.about .data,.about .technology{top:var(--venn-drop)}
+@media(max-width:1100px){.about .venn{--venn-diameter:230px;--venn-drop:148.5px}}
+@media(max-width:800px){.about .venn{--venn-diameter:255px;--venn-drop:159.5px}}
+@media(max-width:600px){.about .venn{--venn-diameter:190px;--venn-drop:121px}}
+@media(max-width:360px){.about .venn{--venn-diameter:170px;--venn-drop:110px}}
