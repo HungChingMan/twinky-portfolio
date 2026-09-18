@@ -47,3 +47,37 @@ const headerObserver = new ResizeObserver(() => {
   heroObserver.observe(hero);
 });
 headerObserver.observe(header);
+
+// Keep one quiet, continuous Experience path attached to the chapter headings
+// as text wrapping and font loading change the distances between nodes.
+const journey = document.querySelector('.experience .journey');
+const journeyLine = journey.querySelector('.journey-line');
+const journeyPath = journeyLine.querySelector('path');
+function alignJourneyPath() {
+  const bounds = journeyLine.getBoundingClientRect();
+  const points = [...journey.querySelectorAll('.node')].map(node => {
+    const rect = node.getBoundingClientRect();
+    return { x: rect.left + rect.width / 2 - bounds.left, y: rect.top + rect.height / 2 - bounds.top };
+  });
+  // Let the broad bends extend into the open gutter, rather than compressing
+  // the whole journey into the narrow SVG box. Keep rightward bends off copy.
+  const sway = bounds.width * (bounds.width > 54 ? 1.9 : .8);
+  const rightBend = bounds.width * .28;
+  const first = points[0];
+  let path = `M ${first.x + rightBend} 0 C ${first.x - sway} ${first.y * .15}, ${first.x + rightBend} ${first.y * .7}, ${first.x} ${first.y}`;
+  points.slice(1).forEach((point, index) => {
+    const previous = points[index];
+    const gap = (point.y - previous.y) / 3;
+    const outgoingBend = index === 0 ? -sway : rightBend;
+    path += ` C ${previous.x + outgoingBend} ${previous.y + gap}, ${point.x - sway} ${point.y - gap}, ${point.x} ${point.y}`;
+  });
+  const last = points[points.length - 1];
+  const tail = bounds.height - last.y;
+  path += ` C ${last.x + rightBend} ${last.y + tail / 3}, ${last.x + rightBend} ${bounds.height - tail / 3}, ${last.x - sway * .3} ${bounds.height}`;
+  journeyLine.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+  journeyPath.setAttribute('d', path);
+}
+const journeyObserver = new ResizeObserver(alignJourneyPath);
+journeyObserver.observe(journey);
+journey.querySelectorAll('.chapter').forEach(chapter => journeyObserver.observe(chapter));
+document.fonts.ready.then(alignJourneyPath);
