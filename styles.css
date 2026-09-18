@@ -196,3 +196,38 @@ html{scroll-padding-top:72px}
 /* Building's full chapter sits left of the Consulting anchor. */
 .experience .chapter:nth-of-type(3){left:-62px}
 @media(max-width:600px){.experience .chapter:nth-of-type(3){left:-20px}}
+
+/* 2026-09-19 — Compact vertical mobile navigation in the site's editorial palette. */
+@media(max-width:600px){
+  .header-inner{position:relative;flex-wrap:nowrap}
+  .header.is-menu-open:before{opacity:1;background:var(--canvas)}
+  .header .menu-toggle:not([hidden]){display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:10px 0 10px 14px;font-size:11px;letter-spacing:.14em;cursor:pointer}
+  .menu-toggle span{display:inline-block;font-size:22px;font-weight:300;line-height:1;letter-spacing:0;transition:transform .2s ease}
+  .menu-toggle[aria-expanded=true] span{transform:rotate(45deg)}
+  .header nav{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;width:100%;padding:8px 0 16px;border-top:1px solid var(--line);color:var(--ink)}
+  .header.has-js nav{position:absolute;top:100%;left:-20px;width:calc(100% + 40px);padding:8px 20px 20px;background:radial-gradient(ellipse at 100% 0%,#e3dff240,transparent 70%),var(--canvas);border-bottom:1px solid var(--line);max-height:calc(100dvh - 60px);overflow-y:auto}
+  .header nav a{display:flex;align-items:center;min-height:52px;padding:14px 4px;border-bottom:1px solid var(--line);font-size:14px;letter-spacing:.02em;transition:color .2s ease,background .2s ease}
+  .header nav a:last-child{border-bottom:0}
+  .header nav a:after{display:none}
+  .header nav a:is(:hover,:focus-visible){color:var(--ink);background:#d4e3fa40}
+  .header nav a:focus-visible{outline-offset:-2px}
+  .header:not(.has-js) .header-inner{flex-wrap:wrap}
+}
+
+/* 2026-09-19 — Two-line mobile menu icon. */
+@media(max-width:600px){
+  .header .menu-toggle:not([hidden]){justify-content:center;min-width:44px;padding:10px;gap:0;margin-right:-10px}
+  .menu-toggle .menu-icon{position:relative;width:22px;height:12px;transform:none}
+  .menu-icon:before,.menu-icon:after{content:'';position:absolute;left:0;width:22px;height:1px;background:var(--ink);transition:transform .2s ease}
+  .menu-icon:before{top:2px}
+  .menu-icon:after{bottom:2px}
+  .menu-toggle[aria-expanded=true] .menu-icon{transform:none}
+  .menu-toggle[aria-expanded=true] .menu-icon:before{transform:translateY(3.5px) rotate(45deg)}
+  .menu-toggle[aria-expanded=true] .menu-icon:after{transform:translateY(-3.5px) rotate(-45deg)}
+}
+
+/* 2026-09-19 — Open mobile navigation shares the desktop's frosted canvas. */
+@media(max-width:600px){
+  .header.is-menu-open:before{background:rgba(248,247,244,.38)}
+  .header.has-js nav{background:rgba(248,247,244,.38);backdrop-filter:blur(20px) saturate(110%);-webkit-backdrop-filter:blur(20px) saturate(110%)}
+}

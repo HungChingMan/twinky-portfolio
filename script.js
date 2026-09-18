@@ -6,12 +6,18 @@ menu.hidden = false;
 function closeMenu() {
   menu.setAttribute('aria-expanded', 'false');
   navigation.classList.remove('is-open');
+  header.classList.remove('is-menu-open');
 }
 menu.addEventListener('click', () => {
   const open = menu.getAttribute('aria-expanded') !== 'true';
   menu.setAttribute('aria-expanded', String(open));
   navigation.classList.toggle('is-open', open);
+  header.classList.toggle('is-menu-open', open);
 });
+document.addEventListener('click', event => {
+  if (!header.contains(event.target)) closeMenu();
+});
+window.matchMedia('(max-width: 600px)').addEventListener('change', closeMenu);
 navigation.addEventListener('click', event => {
   if (event.target.closest('a')) closeMenu();
 });
