@@ -293,3 +293,99 @@ html{scroll-padding-top:72px}
 @media(max-width:1100px){.moodwalk-visual{--loop-width:426px;--loop-height:530px;--loop-offset:-10px}}
 @media(max-width:800px){.moodwalk-visual{--loop-width:338px;--loop-height:474px;--loop-offset:0px}}
 @media(max-width:600px){.moodwalk-visual{--loop-width:325px;--loop-height:455px}}
+
+/* 2026-09-19 — PeraFlash static transformation composition. */
+.peraflash{padding-top:78px;padding-bottom:125px}
+.peraflash .project-grid{grid-template-columns:1.2fr .8fr;gap:86px;align-items:center}
+.peraflash .project-copy{align-self:center}
+.peraflash .peraflash-eyebrow{margin-bottom:13px;font-size:10px;font-weight:400;letter-spacing:var(--tracking-label);color:var(--label-color)}
+.peraflash .project-title{margin-bottom:10px}
+.peraflash-question{max-width:360px;margin-top:42px;font-family:var(--font-display);font-size:clamp(23px,2.05vw,29px);font-weight:400;line-height:1.28;letter-spacing:var(--tracking-display);color:#5f687a}
+.peraflash .peraflash-description{max-width:360px;margin-top:27px;font-size:17px}
+.peraflash .peraflash-visual{position:relative;display:block;min-height:540px;margin:0;isolation:isolate}
+.peraflash .peraflash-visual .project-orbit{left:2%;top:6%;width:520px;height:520px;max-width:96%;opacity:.58}
+.peraflash .conversation{position:absolute;left:0;top:54px;width:82%;z-index:1;transform:rotate(-3deg)}
+.peraflash .flashcards{position:absolute;right:0;top:285px;width:88%;z-index:2;margin:0;transform:rotate(2deg)}
+.peraflash .extraction-arrow{display:none}
+@media(max-width:1100px){
+  .peraflash .project-grid{gap:52px}
+  .peraflash .peraflash-visual{min-height:480px}
+  .peraflash .conversation{top:48px;width:86%}
+  .peraflash .flashcards{top:250px;width:92%}
+}
+@media(max-width:800px){
+  .peraflash{padding-top:68px;padding-bottom:100px}
+  .peraflash .project-grid{grid-template-columns:1.12fr .88fr;gap:34px}
+  .peraflash-question{margin-top:34px;font-size:23px}
+  .peraflash .peraflash-description{font-size:16px}
+  .peraflash .peraflash-visual{min-height:400px}
+  .peraflash .conversation{top:38px;width:92%}
+  .peraflash .flashcards{top:220px;width:98%}
+}
+@media(max-width:600px){
+  .peraflash{padding-top:54px;padding-bottom:82px}
+  .peraflash .project-grid{grid-template-columns:1fr;gap:34px}
+  .peraflash .project-copy{grid-row:1}
+  .peraflash-question{max-width:340px;margin-top:31px;font-size:24px}
+  .peraflash .peraflash-description{max-width:340px;margin-top:22px}
+  .peraflash .peraflash-visual{min-height:365px;width:100%;max-width:500px;margin:0 auto}
+  .peraflash .conversation{top:24px;width:91%}
+  .peraflash .flashcards{top:190px;width:96%}
+}
+
+/* 2026-09-19 — PeraFlash composition matched to the screenshot reference.
+   The visual is a 900×800 stage (reference px); every child is sized in cqw (1cqw = 9 reference px)
+   so the windows, tilt, overlap and annotations scale together at any width. */
+@media(min-width:801px){
+  .peraflash{padding-top:95px}
+  .peraflash .project-grid{position:relative;width:min(1440px,calc(100% - 112px));grid-template-columns:minmax(0,900fr) minmax(0,463fr);column-gap:5.35%}
+}
+@media(min-width:1101px){
+  .peraflash .project-grid{left:-2.6vw}
+}
+@media(min-width:801px) and (max-width:1100px){
+  .peraflash .project-grid{width:calc(100% - 72px)}
+}
+.peraflash .peraflash-visual{container-type:inline-size;aspect-ratio:900/800;min-height:0;width:100%;max-width:none;margin:0}
+.peraflash .peraflash-visual .project-orbit{left:1.5cqw;top:9cqw;width:88cqw;height:88cqw;max-width:none;opacity:1;background:radial-gradient(circle,#e3eee5d9,#e7f0e7b8 62%,#e9f1e800 71%);z-index:-1}
+.peraflash .browser img{clip-path:inset(0 0 3.5% 0)}
+.peraflash .browser{border-radius:1.55cqw;border:1px solid #dfe3dd;background:#f6f6f6;box-shadow:0 2.2cqw 4.5cqw #3a4a3c1f,0 .4cqw 1.2cqw #3a4a3c14}
+.peraflash .browser-bar{height:3.3cqw;padding-left:2.5cqw;gap:.9cqw;background:linear-gradient(#e3ece1,#d9e5d8)}
+.peraflash .browser-bar i{width:1.2cqw;height:1.2cqw;background:#febc2e}
+.peraflash .browser-bar i:first-child{background:#ff5f57}
+.peraflash .browser-bar i:last-child{background:#28c840}
+.peraflash .conversation{left:15.67cqw;top:1.67cqw;width:58.67cqw;height:36.67cqw;z-index:1;transform:rotate(2.1deg)}
+.peraflash .flashcards{left:11.56cqw;top:34.44cqw;right:auto;width:79.11cqw;height:46.22cqw;z-index:2;transform:rotate(-4.4deg)}
+.peraflash-marks{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible}
+.peraflash-marks.peraflash-arcs{z-index:0}
+.peraflash-marks path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.peraflash-marks .pf-arc{stroke:#d3dcd5;stroke-width:1.2}
+.peraflash-marks .pf-stroke{stroke:#6f7883;stroke-width:1.6}
+.peraflash .pf-note{position:absolute;z-index:3;margin:0;font-size:2.35cqw;line-height:1.3;color:#6c7480;white-space:nowrap;transform-origin:left bottom}
+.peraflash .pf-note-from{left:0;top:10.6cqw;transform:rotate(-14deg)}
+.peraflash .pf-note-keep{left:84cqw;top:23.3cqw;transform:rotate(-16deg)}
+@media(max-width:800px){
+  .peraflash .project-grid{grid-template-columns:1.15fr .85fr;column-gap:34px}
+  .peraflash .pf-note,.peraflash-marks .pf-stroke{display:none}
+}
+@media(max-width:600px){
+  .peraflash .project-grid{grid-template-columns:1fr}
+}
+
+/* 2026-09-20 — MoodWalk and PeraFlash read as two projects inside one Selected Work section:
+   the gap between them is a project-to-project pause, not a section break.
+   Below 801px PeraFlash's bottom padding is also trimmed so PeraFlash → Contact (~150px / ~130px)
+   matches the other section gaps; at 801px+ it already does (~195px). */
+.moodwalk{padding-bottom:56px}
+.peraflash{padding-top:48px}
+@media(min-width:801px){
+  .peraflash{padding-top:48px}
+}
+@media(max-width:800px){
+  .moodwalk{padding-bottom:44px}
+  .peraflash{padding-top:36px;padding-bottom:75px}
+}
+@media(max-width:600px){
+  .moodwalk{padding-bottom:36px}
+  .peraflash{padding-top:32px;padding-bottom:65px}
+}
