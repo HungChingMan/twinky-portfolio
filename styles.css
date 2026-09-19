@@ -231,3 +231,65 @@ html{scroll-padding-top:72px}
   .header.is-menu-open:before{background:rgba(248,247,244,.38)}
   .header.has-js nav{background:rgba(248,247,244,.38);backdrop-filter:blur(20px) saturate(110%);-webkit-backdrop-filter:blur(20px) saturate(110%)}
 }
+
+/* 2026-09-19 — Contact background fades in from the section above instead of starting at a hard edge. */
+.contact{background:none}
+.contact:before{content:'';position:absolute;left:0;right:0;top:-220px;bottom:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 80% 100%,#dce7ee70,transparent 60%),radial-gradient(ellipse at 100% 45%,#f2e0e580,transparent 50%);-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 260px);mask-image:linear-gradient(to bottom,transparent 0,#000 260px)}
+
+/* 2026-09-19 — MoodWalk static editorial composition. */
+.moodwalk{position:relative;isolation:isolate;margin-top:-64px;padding-top:38px;padding-bottom:110px}
+.moodwalk .project-grid{position:relative;z-index:1;grid-template-columns:.92fr 1.08fr;gap:72px;align-items:start;padding-inline:clamp(12px,2vw,28px)}
+.moodwalk .project-copy{padding-top:30px}
+.moodwalk .project-eyebrow{margin-bottom:13px;font-size:10px;font-weight:400;letter-spacing:var(--tracking-label);color:var(--label-color)}
+.moodwalk .project-title{margin-bottom:10px}
+.moodwalk .question-story{margin-top:35px}
+.moodwalk .reframe-label{margin-top:17px;margin-bottom:10px}
+.moodwalk .reframe-label span{margin-left:15px}
+.moodwalk .final-question{font-size:clamp(44px,4vw,53px);line-height:1.1}
+.moodwalk .positioning{margin-top:21px}
+.moodwalk .moodwalk-visual{min-height:610px;justify-content:center}
+.moodwalk .phone{width:310px;transform:translateX(-22px) rotate(5deg)}
+.moodwalk .project-orbit{width:566px;height:566px;transform:translateX(-22px)}
+.moodwalk .moodwalk-visual:after{width:464px;height:577px;transform:translateX(-22px) rotate(32deg)}
+@media(max-width:1100px){
+  .moodwalk .project-grid{gap:44px}
+  .moodwalk .phone{width:285px;transform:translateX(-10px) rotate(5deg)}
+  .moodwalk .project-orbit{width:416px;height:416px;transform:translateX(-10px)}
+  .moodwalk .moodwalk-visual:after{width:426px;height:530px;transform:translateX(-10px) rotate(32deg)}
+}
+@media(max-width:800px){
+  .moodwalk{margin-top:-38px;padding-top:28px;padding-bottom:85px}
+  .moodwalk .project-grid{gap:28px;padding-inline:0}
+  .moodwalk .project-copy{padding-top:24px}
+  .moodwalk .question-story{margin-top:30px}
+  .moodwalk .final-question{font-size:40px}
+  .moodwalk .phone{width:265px;transform:translateX(0) rotate(5deg)}
+  .moodwalk .project-orbit{width:372px;height:372px;transform:none}
+  .moodwalk .moodwalk-visual:after{width:338px;height:474px;transform:rotate(32deg)}
+}
+@media(max-width:600px){
+  .moodwalk{margin-top:-28px;padding-top:24px;padding-bottom:68px}
+  .moodwalk .project-copy{padding-top:0}
+  .moodwalk .project-eyebrow{margin-bottom:11px}
+  .moodwalk .question-story{margin-top:29px}
+  .moodwalk .moodwalk-visual{min-height:555px;padding-top:8px}
+  .moodwalk .phone{width:265px}
+  .moodwalk .project-orbit{width:379px;height:379px}
+  .moodwalk .moodwalk-visual:after{width:325px;height:455px}
+}
+
+/* 2026-09-19 — Sage leaf accent inspired by the MoodWalk reference. */
+.moodwalk-leaf{position:absolute;left:calc(50% + 145px);top:19%;width:56px;height:70px;opacity:.8;pointer-events:none}
+@media(max-width:1100px){.moodwalk-leaf{left:calc(50% + 138px);width:50px;height:63px}}
+@media(max-width:800px){.moodwalk-leaf{left:calc(50% + 125px);width:44px;height:55px}}
+@media(max-width:600px){.moodwalk-leaf{left:auto;right:max(0px,calc(50% - 170px));top:17%;width:42px;height:53px}}
+
+/* 2026-09-19 — Attach the leaf stem to the loop at its upper-right arc. */
+.moodwalk-visual{--loop-width:464px;--loop-height:577px;--loop-offset:-22px}
+.moodwalk .moodwalk-visual:after{display:none}
+.moodwalk-loop{position:absolute;width:var(--loop-width);height:var(--loop-height);border:1px solid #c5d3c780;border-radius:50%;transform:translateX(var(--loop-offset)) rotate(32deg);pointer-events:none}
+/* This point lies on the ellipse; the transform origin is the SVG stem tip. */
+.moodwalk-loop .moodwalk-leaf{left:61.25%;top:1.282%;right:auto;transform:translate(-6.25%,-96.25%) rotate(-32deg);transform-origin:6.25% 96.25%}
+@media(max-width:1100px){.moodwalk-visual{--loop-width:426px;--loop-height:530px;--loop-offset:-10px}}
+@media(max-width:800px){.moodwalk-visual{--loop-width:338px;--loop-height:474px;--loop-offset:0px}}
+@media(max-width:600px){.moodwalk-visual{--loop-width:325px;--loop-height:455px}}
