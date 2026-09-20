@@ -389,3 +389,123 @@ html{scroll-padding-top:72px}
   .moodwalk{padding-bottom:36px}
   .peraflash{padding-top:32px;padding-bottom:65px}
 }
+
+/* 2026-09-20 — Responsive V1 pass.
+   Everything below is scoped to max-width:1100px (or is a neutral fix), so the approved desktop composition is untouched.
+   Breakpoints: 1100 (tablet landscape), 800 (tablet portrait), 700 (projects + Experience stack), 600 (phone / mobile nav). */
+
+/* Neutral fixes: no last-line orphans in running copy, and a comfortable tap target for the wordmark. */
+p{text-wrap:pretty}
+.header .wordmark{display:inline-flex;align-items:center;min-height:44px}
+
+/* Tablet and below: headings balance instead of stranding a word; Hero text aligns to the same gutter as the nav. */
+@media(max-width:1100px){
+  h1,h2,h3,.initial-question,.peraflash-question,.hero-positioning{text-wrap:balance}
+  .hero-content{width:calc(100% - 72px)}
+}
+@media(max-width:800px){
+  .hero-content{width:calc(100% - 48px)}
+  /* One fluid step for every section heading (was 37/38/39px by section). */
+  .about-copy h2,.experience h2,.work-intro h2,.contact h2{font-size:38px}
+  .hero h1{font-size:clamp(56px,7.6vw,64px)}
+  .hero-positioning{font-size:28px}
+}
+
+/* About — in the single-column layout (800px and below) the Venn scales with its own column (container query) instead of jumping between fixed sizes.
+   The two-column tablet range (801–1100px) keeps its original fixed 230px circles.
+   Diameter, spacing and type all derive from --venn-diameter, so the three equal overlaps are preserved. */
+@media(max-width:800px){
+  .venn-composition{container-type:inline-size;--venn-diameter:min(270px,calc((100cqw + 24px) / 1.753));--venn-width:calc(var(--venn-diameter) * 1.753)}
+  .about .venn{--venn-diameter:inherit;--venn-drop:calc(var(--venn-diameter) * .652);width:var(--venn-width);height:calc(var(--venn-diameter) * 1.6);max-width:none;margin-inline:calc((100% - var(--venn-width)) / 2)}
+  .about .discipline{width:var(--venn-diameter);height:var(--venn-diameter);padding:calc(var(--venn-diameter) * .11)}
+  .about .product{padding-bottom:calc(var(--venn-diameter) * .11)}
+  .about .data{padding-right:calc(var(--venn-diameter) * .11)}
+  .about .technology{padding-left:calc(var(--venn-diameter) * .11)}
+  .discipline-title{font-size:clamp(15px,calc(var(--venn-diameter) * .078),21px)}
+  .discipline .default,.copy-stack .capabilities{font-size:clamp(11.5px,calc(var(--venn-diameter) * .058),14px)}
+  .copy-stack{width:calc(var(--venn-diameter) * .63)}
+}
+/* Stacked About: the note tucks under the Technology circle, following the Venn's edge at any width. */
+@media(max-width:800px){
+  .venn-composition{padding-bottom:70px}
+  .about-note{top:auto;bottom:-6px;right:max(0px,calc(50% - var(--venn-width) / 2 + var(--venn-diameter) * .14));font-size:clamp(14px,2vw,16px)}
+}
+
+/* Projects and Experience stack into one linear flow at 700px and below. */
+@media(max-width:700px){
+  .experience-grid{grid-template-columns:1fr;gap:50px}
+  .experience h2{max-width:none}
+  .experience-note{margin:30px 0 0 clamp(60px,26vw,180px);font-size:15px}
+  .experience .journey{--journey-gutter:54px;margin-right:0}
+  .experience .journey-line{top:-30px;height:calc(100% + 55px)}
+  .experience .node{font-size:28px}
+  /* A single, even column: the path does the wandering, the chapters don't. */
+  .experience .chapter:nth-of-type(n){left:0}
+  .experience .chapter .node{left:-27px}
+
+  .project{padding-top:30px}
+  .project-grid,.moodwalk .project-grid,.peraflash .project-grid{grid-template-columns:1fr;gap:30px;padding-inline:0}
+  .project-title{font-size:clamp(38px,11vw,44px)}
+  .metadata{font-size:13px}
+}
+
+/* MoodWalk — story first, then the phone. The phone, orbit and loop all derive from one width. */
+@media(max-width:700px){
+  .moodwalk{margin-top:-28px;padding-top:24px}
+  .moodwalk .project-copy{padding-top:0}
+  .moodwalk .question-story{margin-top:28px}
+  .moodwalk .initial-question{font-size:clamp(22px,6.4vw,26px)}
+  .moodwalk .final-question{font-size:clamp(34px,11vw,48px)}
+  .moodwalk .positioning{font-size:16px;max-width:340px}
+  .moodwalk .moodwalk-visual{--pw:clamp(210px,66vw,275px);--loop-width:calc(var(--pw) * 1.23);--loop-height:calc(var(--pw) * 1.72);--loop-offset:0px;min-height:0;padding:18px 0 22px}
+  .moodwalk .phone{width:var(--pw);transform:rotate(5deg)}
+  .moodwalk .project-orbit{width:calc(var(--pw) * 1.43);height:calc(var(--pw) * 1.43);max-width:none;transform:none}
+}
+
+/* PeraFlash — copy first, then the stage, drawn a little larger than the column so the windows stay legible. */
+@media(max-width:700px){
+  .peraflash{padding-top:32px}
+  .peraflash .project-copy{grid-row:1}
+  .peraflash-question{max-width:340px;margin-top:28px;font-size:clamp(22px,6.4vw,26px)}
+  .peraflash .peraflash-description{max-width:340px;margin-top:20px}
+  .peraflash .peraflash-visual{width:124%;max-width:none;margin:-4% 0 -8% -13.5%}
+}
+
+/* Phone. */
+@media(max-width:600px){
+  .hero-content{width:calc(100% - 40px)}
+  .about-copy h2,.experience h2,.work-intro h2,.contact h2{font-size:clamp(30px,9vw,38px)}
+  .hero h1{font-size:clamp(34px,11.4vw,56px);margin-bottom:14px}
+  .hero-positioning{font-size:clamp(20px,6vw,28px);margin-bottom:16px}
+  .hero-intro{font-size:16px;max-width:340px}
+  .hero .eyebrow{font-size:10px}
+  .about-copy>p:last-child,.experience-intro,.contact p:not(.eyebrow){font-size:16px}
+  .experience-intro{margin-top:24px}
+}
+
+/* 2026-09-20 — Hero text shares the page gutter with the wordmark and nav at desktop widths.
+   Equal to the previous 84% box at 1440px+ (both resolve to 1180px), so the approved composition is unchanged there. */
+@media(min-width:1101px){
+  .hero-content{width:min(1180px,calc(100% - 112px))}
+}
+
+/* 2026-09-20 — Stacked About: the handwritten note sits clear of the Technology circle.
+   The circles overflow the Venn box by ~5% of a diameter, so the note is placed from the circle's bottom edge. */
+@media(max-width:800px){
+  .venn-composition{padding-bottom:calc(var(--venn-diameter) * .052 + 100px)}
+  .about-note{top:calc(var(--venn-diameter) * 1.652 + 20px);bottom:auto}
+}
+
+/* 2026-09-20 — Two-column tablet range: when the column is narrower than the 420px Venn, centre the overflow
+   instead of spilling right (this caused a horizontal scrollbar at ~801–870px). Identical to `auto` once the column is 420px+. */
+@media(min-width:801px) and (max-width:1100px){
+  .about .venn{margin-inline:calc((100% - 420px) / 2)}
+}
+
+/* 2026-09-20 — Two-column About: top-align the Venn with the text column (the ABOUT label) instead of centring it,
+   with the same ~7px drop the approved 1440px layout has. Below 1440px the two columns differ in height, so centring
+   pushed the circles up to 33–45px above the label. */
+@media(min-width:801px) and (max-width:1439px){
+  .about-grid{align-items:start}
+  .venn-composition{margin-top:7px}
+}
