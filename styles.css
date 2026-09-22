@@ -509,3 +509,15 @@ p{text-wrap:pretty}
   .about-grid{align-items:start}
   .venn-composition{margin-top:7px}
 }
+
+/* 2026-09-21 — Footer alignment. Name and tagline sit on one baseline, vertically centred in the
+   footer band, sharing the wordmark's uppercase tracking so the page closes the way the header opens.
+   Left edge = content gutter, right edge = the contact links' edge. Stacks left-aligned on mobile. */
+.footer{align-items:center;padding-block:0;font-size:12px;line-height:1.4}
+.footer span:first-child{letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.footer span:last-child{font-size:12px;letter-spacing:.04em;text-align:right}
+@media(max-width:600px){
+  .footer{align-items:flex-start;justify-content:center;gap:6px}
+  .footer span:first-child{font-size:11px;letter-spacing:.16em}
+  .footer span:last-child{text-align:left}
+}
