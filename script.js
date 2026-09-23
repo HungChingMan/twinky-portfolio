@@ -197,5 +197,23 @@ if (hero && about && venn && !reducedMotion) {
     venn.addEventListener('focusout', scheduleTravel);
     document.fonts.ready.then(refreshTravel);
     refreshTravel();
+
+    // Jumping straight to #about (nav link, Hero's "Scroll to explore" arrow) is a request
+    // to arrive, not to scroll through the travel — so it should land exactly on the fully
+    // merged Venn, not wherever the browser's native anchor scroll happens to land relative
+    // to the travel's own end point. Skipped below the travel breakpoint, where #about's
+    // native anchor jump is the whole (correct) behaviour.
+    document.querySelectorAll('a[href="#about"]').forEach(link => {
+      link.addEventListener('click', event => {
+        if (!travelMedia.matches) return;
+        event.preventDefault();
+        measureTravel();
+        const endY = travelGeometry
+          ? travelGeometry.vennY - travelConfig.end * window.innerHeight
+          : about.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: endY, behavior: 'smooth' });
+        history.pushState(null, '', '#about');
+      });
+    });
   }
 }
