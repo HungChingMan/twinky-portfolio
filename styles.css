@@ -521,3 +521,25 @@ p{text-wrap:pretty}
   .footer span:first-child{font-size:11px;letter-spacing:.16em}
   .footer span:last-child{text-align:left}
 }
+
+/* Hero → About travel. script.js sets --tx/--ty/--s on each Hero form so it moves onto its
+   matching Venn circle as the visitor scrolls. --reveal (also set by script.js, straight from
+   scroll progress — no CSS transition/duration involved) crossfades the travelling form out
+   as the sharp Venn circle (its existing pigment-halo ::before) fades in, so the shape itself
+   stays glued 1:1 to scroll speed instead of finishing on its own clock once the visitor stops.
+   Identity/full-strength by default, so the Hero and Venn are unaffected whenever JS hasn't
+   started travel (short viewport, reduced motion, the stacked layout below). Once script.js
+   marks the section .is-merged (reveal reached 1), the three labels get a short one-off
+   staggered entrance — a small reward for arriving, not something tied to scroll itself. */
+.form{transform:translate(var(--tx,0px),var(--ty,0px)) scale(var(--s,1))}
+@keyframes label-reveal{from{opacity:0}to{opacity:1}}
+@media(min-width:801px){
+  main{overflow-x:clip}
+  .hero.is-traveling{overflow-x:clip;overflow-y:visible}
+  .hero.is-traveling .hero-forms{z-index:1;opacity:calc(1 - var(--reveal,0))}
+  .about.is-travel .discipline::before{opacity:var(--reveal,1)}
+  .about.is-travel .discipline-title,.about.is-travel .copy-stack{opacity:0}
+  .about.is-travel.is-merged .product .discipline-title,.about.is-travel.is-merged .product .copy-stack{animation:label-reveal .3s ease-out both}
+  .about.is-travel.is-merged .data .discipline-title,.about.is-travel.is-merged .data .copy-stack{animation:label-reveal .3s ease-out .06s both}
+  .about.is-travel.is-merged .technology .discipline-title,.about.is-travel.is-merged .technology .copy-stack{animation:label-reveal .3s ease-out .12s both}
+}
