@@ -161,9 +161,11 @@ if (hero && about && venn && !reducedMotion) {
       const progress = Math.min(1, Math.max(0, (y - startY) / (endY - startY)));
       const eased = travelConfig.ease(progress);
 
-      // A focused circle is always fully revealed so keyboard users never land on
+      // A keyboard-focused circle is always fully revealed so keyboard users never land on
       // an unlabelled one; otherwise reveal rides the same scroll progress as the travel.
-      const focused = document.activeElement?.closest('.venn');
+      // :focus-visible excludes mouse/touch clicks, so clicking a circle mid-transform no
+      // longer fast-forwards straight to the merged state the way tabbing to it should.
+      const focused = document.activeElement?.matches?.(':focus-visible') && document.activeElement.closest('.venn');
       const reveal = focused ? 1 : Math.min(1, Math.max(0, (progress - travelConfig.revealFrom) / (1 - travelConfig.revealFrom)));
       document.documentElement.style.setProperty('--reveal', String(reveal));
       // Edge-triggered, not continuous: the label stagger is a fixed-length entrance,
